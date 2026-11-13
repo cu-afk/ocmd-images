@@ -104,6 +104,12 @@
   .facil .tx b{display:block;font-size:16px;color:var(--brand-ink)}
   .facil a{flex:none;text-decoration:none;font-weight:700;font-size:15px;background:var(--brand-ink);color:#fff;border-radius:12px;padding:12px 16px;white-space:nowrap;text-align:center}
   @media (max-width:480px){ .facil{flex-direction:column;align-items:stretch} }
+  .newbie{background:var(--soft);border:1.5px solid var(--brand-ink);border-radius:18px;padding:20px 14px 18px;margin-bottom:36px}
+  .newbie > .label,.newbie > h2,.newbie > p{padding:0 6px}
+  .newbie > .label{color:var(--brand-ink)}
+  .newbie > h2{font-size:20px}
+  .newbie > p{color:var(--ink-2)}
+  .newbie .task{margin-top:14px}
   .kick-more{margin-top:12px;border:1px solid var(--line);border-radius:12px;padding:0 14px}
   .kick-more summary{cursor:pointer;font-weight:700;font-size:15px;padding:12px 0;list-style:none}
   .kick-more summary::-webkit-details-marker{display:none}
@@ -280,10 +286,48 @@
 
 <section class="pane" id="todo" data-pane="todo">
   <div class="wrap">
-    <div class="facil"><div class="tx"><b>📝 아직 시작 설문지를 안 내셨다면</b>퍼실로 선정되신 분, 11/8 이후에 결제하신 분은 지금 시작 설문지를 작성해 주세요. 조 배정과 각종 혜택을 빠짐없이 챙겨 드리려고 해요. 이미 내셨다면 다시 내지 않으셔도 돼요.</div><a href="https://tally.so/r/BEEYoK" target="_blank" rel="noopener">시작 설문지 작성하기 ↗</a></div>
+    <section class="newbie" aria-label="퍼실·추가 결제자 할 일">
+      <p class="label">퍼실 · 11/8 이후 결제자</p>
+      <h2>아직 시작 설문지를 안 내셨다면, 이 두 가지부터 해 주세요</h2>
+      <p>퍼실로 선정되신 분, 11/8 이후에 결제하신 분은 아래 두 가지를 먼저 해 주세요. 조 배정과 각종 혜택을 빠짐없이 챙겨 드리려고 해요. 이미 하셨다면 건너뛰셔도 돼요.</p>
+      <article class="task card" data-task="1">
+        <div class="task-head"><span class="num">1</span><h3>팬딩 무료 가입하고 오은환쌤 팔로우하기</h3></div>
+        <p>혜택강의는 <strong>팬딩</strong>에서 들어요.<br><strong>무료 가입</strong>하고 오은환 선생님을 팔로우해 두세요.</p>
+        <p class="nopay">💜 멤버십 플랜은 <b>따로 결제하지 않으셔도 돼요</b></p>
+        <a class="btn line" href="https://fanding.kr/@ocmd_membership/" target="_blank" rel="noopener">팬딩 무료 가입하기 ↗</a>
+        <button class="check" type="button" aria-pressed="false"><span class="box"></span>무료 가입하고 팔로우했어요</button>
+      </article>
+      <article class="task card" data-task="2">
+        <div class="task-head"><span class="num">2</span><h3>시작 설문지(사전 설문지) 제출하기</h3></div>
+        <p>이 설문지로 조를 나누고 강의 권한을 드려요.<br><strong>꼭 제출해 주세요.</strong></p>
+        <a class="btn dark" href="https://tally.so/r/BEEYoK" target="_blank" rel="noopener">3기 시작 설문지 작성하기 ↗</a>
+        <div class="memo">
+          <p class="memo-t">📝 설문지에 팬딩 닉네임·아이디를 적어야 해요</p>
+          <p class="memo-s">닉네임과 아이디는 <b>팬딩 접속 → 마이</b>에서 확인할 수 있어요</p>
+          <div class="route">
+            <div><span>앱</span><i>하단 메뉴 맨 오른쪽</i></div>
+            <div><span>PC</span><i>왼쪽 메뉴 맨 아래</i></div>
+          </div>
+          <div class="mock" role="img" aria-label="팬딩 마이 화면 예시. 굵은 글씨가 닉네임, 그 아래 회색 글씨가 이메일(아이디)">
+            <div class="mock-av" aria-hidden="true">😎</div>
+            <div>
+              <div class="mock-nick">오콘목달_시유 <em class="tag">닉네임</em></div>
+              <div class="mock-mail">kdh<span class="blur">-0000</span>@hanmail.net <em class="tag">이메일(아이디)</em></div>
+            </div>
+          </div>
+          <p class="fine">※ 처음 설정된 닉네임을 변경해도 괜찮지만, 설문지 제출 이후에는 안내 문자를 받기 전까지 절대 바꾸지 마세요.</p>
+        </div>
+        <div class="warn"><b>해외에 계시면, 카카오톡 채널 <a href="http://pf.kakao.com/_CdqZb" target="_blank" rel="noopener" class="nw">@오은환</a>으로 꼭 메시지를 남겨 주세요</b>설문지를 낸 뒤 “프클3기 해외거주자입니다”라고 보내 주세요. 그래야 안내가 빠짐없이 전달돼요.</div>
+        <ul class="sm">
+          <li>고치고 싶으면 설문지를 다시 제출하면 돼요.</li>
+        </ul>
+        <button class="check alt" type="button" aria-pressed="false" data-k="ocmd3-abroad"><span class="box"></span><i>(해외 거주자) 카카오톡 채널 <span class="nw">@오은환</span>에 메시지를 남겼어요</i></button>
+        <button class="check" type="button" aria-pressed="false"><span class="box"></span>설문지 제출했어요</button>
+      </article>
+    </section>
 
     <h2>킥오프 전까지, 이렇게 준비해요</h2>
-    <p>팬딩 가입과 시작 설문지는 이미 마무리해 주셨어요. 이제 11/28 킥오프 전까지는 아래 네 가지만 챙겨 주시면 돼요. 참석 여부와 CC방은 지금 바로, 나머지 둘은 킥오프 전까지 천천히요.</p>
+    <p>팬딩 가입과 시작 설문지를 마치셨다면, 이제 11/28 킥오프 전까지는 아래 네 가지만 챙겨 주시면 돼요. 참석 여부와 CC방은 지금 바로, 나머지 둘은 킥오프 전까지 천천히요.</p>
 
     <div class="card upc" aria-label="다가오는 일정">
       <p class="label">다가오는 일정</p>
@@ -353,49 +397,6 @@
       <a class="btn line" href="https://ebook-product.kyobobook.co.kr/dig/epd/ebook/E000012928782" target="_blank" rel="noopener">교보문고에서 《오리지널 코드》 보기 ↗</a>
       <button class="check" type="button" aria-pressed="false"><span class="box"></span>한 번 읽었어요</button>
     </article>
-
-    <details class="donebox">
-      <summary><div><b>✅ 이미 끝낸 일 두 가지</b><small>11/8 이후에 결제하셨다면 열어서 확인해 주세요</small></div></summary>
-      <div class="inner">
-        <p class="sm" style="margin:0 4px 4px">대부분 11/8까지 마무리해 주셨어요. 그 뒤에 결제하셨다면 아래 두 가지도 지금 해 주세요. 시작 설문지는 <b style="color:var(--ink)">지금도 제출할 수 있어요.</b></p>
-
-        <article class="task card" data-task="1">
-          <div class="task-head"><span class="num">✓</span><h3>팬딩 무료 가입하고 오은환쌤 팔로우하기</h3></div>
-          <p>혜택강의는 <strong>팬딩</strong>에서 들어요.<br><strong>무료 가입</strong>하고 오은환 선생님을 팔로우해 두세요.</p>
-          <p class="nopay">💜 멤버십 플랜은 <b>따로 결제하지 않으셔도 돼요</b></p>
-          <a class="btn line" href="https://fanding.kr/@ocmd_membership/" target="_blank" rel="noopener">팬딩 무료 가입하기 ↗</a>
-          <button class="check" type="button" aria-pressed="false"><span class="box"></span>무료 가입하고 팔로우했어요</button>
-        </article>
-
-        <article class="task card" data-task="2">
-          <div class="task-head"><span class="num">✓</span><h3>시작 설문지(사전 설문지) 제출하기</h3></div>
-          <p>이 설문지로 조를 나누고 강의 권한을 드려요. 11/8 이후에 결제하셨다면 <strong>지금 제출해 주세요.</strong></p>
-          <a class="btn dark" href="https://tally.so/r/BEEYoK" target="_blank" rel="noopener">3기 시작 설문지 작성하기 ↗</a>
-          <div class="memo">
-            <p class="memo-t">📝 설문지에 팬딩 닉네임·아이디를 적어야 해요</p>
-            <p class="memo-s">닉네임과 아이디는 <b>팬딩 접속 → 마이</b>에서 확인할 수 있어요</p>
-            <div class="route">
-              <div><span>앱</span><i>하단 메뉴 맨 오른쪽</i></div>
-              <div><span>PC</span><i>왼쪽 메뉴 맨 아래</i></div>
-            </div>
-            <div class="mock" role="img" aria-label="팬딩 마이 화면 예시. 굵은 글씨가 닉네임, 그 아래 회색 글씨가 이메일(아이디)">
-              <div class="mock-av" aria-hidden="true">😎</div>
-              <div>
-                <div class="mock-nick">오콘목달_시유 <em class="tag">닉네임</em></div>
-                <div class="mock-mail">kdh<span class="blur">-0000</span>@hanmail.net <em class="tag">이메일(아이디)</em></div>
-              </div>
-            </div>
-            <p class="fine">※ 처음 설정된 닉네임을 변경해도 괜찮지만, 설문지 제출 이후에는 안내 문자를 받기 전까지 절대 바꾸지 마세요.</p>
-          </div>
-          <div class="warn"><b>해외에 계시면, 카카오톡 채널 <a href="http://pf.kakao.com/_CdqZb" target="_blank" rel="noopener" class="nw">@오은환</a>으로 꼭 메시지를 남겨 주세요</b>설문지를 낸 뒤 “프클3기 해외거주자입니다”라고 보내 주세요. 그래야 안내가 빠짐없이 전달돼요.</div>
-          <ul class="sm">
-            <li>고치고 싶으면 설문지를 다시 제출하면 돼요.</li>
-          </ul>
-          <button class="check alt" type="button" aria-pressed="false" data-k="ocmd3-abroad"><span class="box"></span><i>(해외 거주자) 카카오톡 채널 <span class="nw">@오은환</span>에 메시지를 남겼어요</i></button>
-          <button class="check" type="button" aria-pressed="false"><span class="box"></span>설문지 제출했어요</button>
-        </article>
-      </div>
-    </details>
 
     <a class="rowlink card" href="https://ocmd-premium3.vercel.app/board">
       <div><b>🌟 앞으로의 공지는 여기에 올라와요</b><span>프클 3기 공지 게시판 · 즐겨찾기 추천</span></div><i>→</i>
