@@ -84,6 +84,7 @@
   .nt .dt{display:block;font-size:13px;font-weight:500;color:var(--ink-3);margin-top:1px}
   .nt .ar{flex:none;color:var(--ink-3);font-weight:700;font-size:20px;line-height:1}
   .nt[open] .ar{transform:rotate(45deg)}
+  .nt .tg.must{background:var(--pink);color:var(--pink-ink)}
   .nb{border-top:1px solid var(--line);padding:14px 16px 16px;font-size:15px;line-height:1.7}
   .nb p{margin:0 0 10px}
   .nb .nh{font-weight:800;margin:18px 0 4px;font-size:16px}
@@ -310,6 +311,26 @@
   <p class="ns">※ 설문지 제출 이후에는 안내 문자를 받기 전까지 팬딩 닉네임을 바꾸지 마세요.<br>※ 해외에 계시면 설문지를 낸 뒤 카카오톡 채널 <a href="http://pf.kakao.com/_CdqZb" target="_blank" rel="noopener">@오은환</a>으로 “프클3기 해외거주자입니다”라고 보내 주세요.</p>
 </template>
 
+<!-- 킥오프 참석 여부 (11/13) -->
+<template id="n-kick">
+  <p>11/28(토), 3기의 100일이 시작되는 오프닝 컨퍼런스에서 여러분의 자리와 명찰을 미리 준비하려고 해요. <b>오시는 분도, 못 오시는 분도</b> 꼭 한 번 참석 여부를 알려 주세요. 1분이면 끝나요.</p>
+  <a class="nbtn" href="https://tally.so/r/BEdeDY" target="_blank" rel="noopener">참석 여부 알려 주기 ↗</a>
+  <p class="ns">마감: 11/18(수) 밤 12시</p>
+  <div class="dates">
+    <div><b>시간</b><span>11/28(토) 오후 1시~5시 (12시부터 입장)</span></div>
+    <div><b>장소</b><span>스카이아트홀 (서울 강서구 화곡로63길 65)</span></div>
+    <div><b>교통</b><span>5호선 발산역 · 9호선 가양역</span></div>
+  </div>
+  <p class="nh">오시는 분은 꼭 알아 두세요</p>
+  <ol>
+          <li><b>11/27(금)</b>, 설문에 적은 번호로 입장 QR 문자를 보내 드려요. QR로 명찰을 받아야 입장할 수 있어요.</li>
+          <li>오후 1시 정각에 시작해요. <b>12시 30분까지</b> 와 주세요.</li>
+          <li>음식물·음료·꽃다발은 객석에 가지고 들어갈 수 없어요.</li>
+          <li>주차는 무료지만 붐빌 수 있어요. 대중교통을 권해요.</li>
+  </ol>
+  <p class="ns">아이·가족과 함께 오셔도 괜찮아요. 설문에 함께 오는 인원을 꼭 적어 주세요.<br>강연 저작권 문제로 실시간 송출은 어려워요. 대신 녹화본을 드릴 예정이에요.</p>
+</template>
+
 <!-- 퍼실 공지 (11/13) -->
 <template id="n-1113">
   <p>퍼실로 선정되신 여러분, 반갑습니다. 각종 혜택을 드리기 위해 시작 설문지를 작성해 주세요.</p>
@@ -337,13 +358,15 @@
 
 <script>
 var NOTICES = [
+  { date: '2026-11-13', tag: '필독', status: 'open', title: '[킥오프] 11/28 참석 여부를 알려 주세요 (~11/18)', body: 'n-kick' },
   { date: '2026-11-13', tag: '필독', status: 'open', title: '[퍼실] 시작 설문지 작성 안내', body: 'n-1113' },
   { date: '2026-11-06', tag: '강의', status: 'open', title: '프리미엄 클래스 3기 강의 안내', body: 'n-1106' },
   { tag: '안내', status: 'done', title: '결제 후 해야 하는 2가지 (11/8 마감)', body: 'n-1108' }
 ];
 
 /* 필독 고정 공지: 킥오프 전까지 할 일 · 혜택강의 (체크 상태는 결제자 안내 페이지와 공유) */
-var PIN = '<div class="pin"><div class="pin-h"><span class="tg">필독</span><b>킥오프 전까지 할 일 · 혜택강의 듣는 순서</b><span class="due">11.12 (목)</span></div><p class="pin-s">11/28 킥오프 전까지 아래 세 가지를 챙겨 주세요</p>' +
+var PIN = '<div class="pin"><div class="pin-h"><span class="tg">필독</span><b>킥오프 전까지 할 일 · 혜택강의 듣는 순서</b><span class="due">11.12 (목)</span></div><p class="pin-s">11/28 킥오프 전까지 아래 네 가지를 챙겨 주세요</p>' +
+  '<div class="todo"><label><input type="checkbox" data-k="ocmd3-task-kickoff"><span class="box"></span><span>킥오프 참석 여부 알려 주기<small>11/18(수) 밤 12시 마감</small></span></label><a href="https://tally.so/r/BEdeDY" target="_blank" rel="noopener">알려 주기 ↗</a></div>' +
   '<div class="todo"><label><input type="checkbox" data-k="ocmd3-task-cc"><span class="box"></span><span>CC방 참여요청하기<small>11/13(금) 오후 2시부터 입장 · ‘참여요청’ 버튼까지</small></span></label><a href="https://vo.la/KvZDyvd" target="_blank" rel="noopener">참여요청 ↗</a></div>' +
   '<div class="todo"><label><input type="checkbox" data-k="ocmd3-task-lec"><span class="box"></span><span>혜택강의 순서대로 듣기<small class="calm">킥오프 전까지</small></span></label><a href="https://ocmd-premium3.vercel.app/#free">순서 보기 →</a></div>' +
   '<div class="todo"><label><input type="checkbox" data-k="ocmd3-task-book"><span class="box"></span><span>《오리지널 코드》 한 번 읽기<small class="calm">개강 전까지</small></span></label><a href="https://ebook-product.kyobobook.co.kr/dig/epd/ebook/E000012928782" target="_blank" rel="noopener">교보문고 ↗</a></div>' +
@@ -374,8 +397,10 @@ var EVENTS = [
   { d: '2026-11-13', type: 'p', title: 'CC방 입장 시작', meta: '오후 2시부터 관리자가 순서대로 승인해요' },
   { d: '2026-11-17', type: 'p', star: true, title: '조 발표 (예정)', meta: '조별 단톡방은 다음 주 중 열려요' },
   { d: '2026-11-17', type: 'f', title: '11월 수강생 합동라이브', meta: '팬딩 · 밤 9시' },
+  { d: '2026-11-18', type: 'p', star: true, title: '킥오프 참석 여부 마감', meta: '밤 12시까지 · 오시는 분도, 못 오시는 분도 알려 주세요' },
   { d: '2026-11-26', type: 'f', title: 'AI 특강', meta: '팬딩 · 밤 9시' },
-  { d: '2026-11-28', type: 'p', star: true, title: '3기 오프라인 킥오프', meta: '강서구 스카이아트홀 · 오후 1시~5시' },
+  { d: '2026-11-27', type: 'p', title: '입장 QR 문자 발송', meta: '참석하시는 분께 설문에 적은 번호로 보내 드려요' },
+  { d: '2026-11-28', type: 'p', star: true, title: '3기 오프라인 킥오프', meta: '스카이아트홀 · 오후 1시~5시 (12시부터 입장)' },
   { d: '2026-12-01', type: 'p', star: true, title: '본강의 1 — 수익화 목표 설정 & 오리지널 코드 진단', meta: '온라인 · 밤 9시' },
   { d: '2026-12-03', type: 'f', title: '특강', meta: '팬딩 · 밤 9시' },
   { d: '2026-12-08', type: 'p', title: '본강의 2 — 수익 모델 & 내 타깃 정의', meta: '온라인 · 밤 9시' },
