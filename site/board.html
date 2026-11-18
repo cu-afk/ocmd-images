@@ -387,9 +387,9 @@ var NOTICES = [
 ];
 
 /* 필독 고정 공지: 킥오프 전까지 할 일 · 혜택강의 (체크 상태는 결제자 안내 페이지와 공유) */
-var PIN = '<div class="pin"><div class="pin-h"><span class="tg">필독</span><b>킥오프 전까지 할 일 · 혜택강의 듣는 순서</b><span class="due">11.12 (목)</span></div><p class="pin-s">11/28 킥오프 전까지 아래 다섯 가지를 챙겨 주세요</p>' +
-  '<div class="todo"><label><input type="checkbox" data-k="ocmd3-task-kickoff"><span class="box"></span><span>킥오프 참석 여부 알려 주기<small>11/18(수) 밤 12시 마감</small></span></label><a href="https://tally.so/r/BEdeDY" target="_blank" rel="noopener">알려 주기 ↗</a></div>' +
-  '<div class="todo"><label><input type="checkbox" data-k="ocmd3-task-aisurvey"><span class="box"></span><span>AI 특강 사전 설문 참여하기<small>11/22(일)까지 · 약 2분</small></span></label><a href="https://tally.so/r/bZj867" target="_blank" rel="noopener">참여하기 ↗</a></div>' +
+var PIN = '<div class="pin"><div class="pin-h"><span class="tg">필독</span><b>킥오프 전까지 할 일 · 혜택강의 듣는 순서</b><span class="due">11.12 (목)</span></div><p class="pin-s">11/28 킥오프 전까지 아래 할 일을 챙겨 주세요</p>' +
+  '<div class="todo" data-until="2026-11-19T00:00:00+09:00"><label><input type="checkbox" data-k="ocmd3-task-kickoff"><span class="box"></span><span>킥오프 참석 여부 알려 주기<small>11/18(수) 밤 12시 마감</small></span></label><a href="https://tally.so/r/BEdeDY" target="_blank" rel="noopener">알려 주기 ↗</a></div>' +
+  '<div class="todo" data-until="2026-11-23T00:00:00+09:00"><label><input type="checkbox" data-k="ocmd3-task-aisurvey"><span class="box"></span><span>AI 특강 사전 설문 참여하기<small>11/22(일)까지 · 약 2분</small></span></label><a href="https://tally.so/r/bZj867" target="_blank" rel="noopener">참여하기 ↗</a></div>' +
   '<div class="todo"><label><input type="checkbox" data-k="ocmd3-task-cc"><span class="box"></span><span>CC방 참여요청하기<small>11/13(금) 오후 2시부터 입장 · ‘참여요청’ 버튼까지</small></span></label><a href="https://vo.la/KvZDyvd" target="_blank" rel="noopener">참여요청 ↗</a></div>' +
   '<div class="todo"><label><input type="checkbox" data-k="ocmd3-task-lec"><span class="box"></span><span>혜택강의 순서대로 듣기<small class="calm">킥오프 전까지</small></span></label><a href="https://ocmd-premium3.vercel.app/#free">순서 보기 →</a></div>' +
   '<div class="todo"><label><input type="checkbox" data-k="ocmd3-task-book"><span class="box"></span><span>《오리지널 코드》 한 번 읽기<small class="calm">개강 전까지</small></span></label><a href="https://ebook-product.kyobobook.co.kr/dig/epd/ebook/E000012928782" target="_blank" rel="noopener">교보문고 ↗</a></div>' +
@@ -477,6 +477,8 @@ var EVENTS = [
     bindPin();
   }
   function bindPin(){
+    var nowT = new Date();
+    nList.querySelectorAll('[data-until]').forEach(function(el){ if (nowT >= new Date(el.dataset.until)) el.style.display = 'none'; });
     nList.querySelectorAll('.todo input').forEach(function(c){
       try { c.checked = localStorage.getItem(c.dataset.k) === '1'; } catch(e){}
       c.addEventListener('change', function(){ try { localStorage.setItem(c.dataset.k, c.checked ? '1' : '0'); } catch(e){} });
