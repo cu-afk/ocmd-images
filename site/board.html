@@ -40,6 +40,7 @@
   .next .l{font-size:13px;color:#4a4580;font-weight:600}
   .next .t{font-size:20px;font-weight:800;line-height:1.4;margin:4px 0 2px}
   .next .m{font-size:14px;color:#4a4580}
+  .next .nx-btn{display:inline-block;margin-top:12px;background:#3f3896;color:#fff;font-size:14px;font-weight:700;border-radius:999px;padding:8px 16px;text-decoration:none}
   .next .dd{display:inline-block;font-size:13px;font-weight:800;color:#fff;background:#3f3896;border-radius:999px;padding:2px 10px;margin-left:6px;vertical-align:2px}
   .seg{display:flex;gap:6px;background:#efede9;padding:5px;border-radius:14px}
   .seg button{flex:1;border:0;background:transparent;font-family:inherit;font-size:15px;font-weight:700;padding:10px 0;border-radius:10px;color:var(--ink-3);cursor:pointer}
@@ -451,7 +452,7 @@ var EVENTS = [
   { d: '2026-11-18', type: 'p', title: '조 발표 · 조별 단톡방 오픈', meta: '완료' },
   { d: '2026-11-19', type: 'p', star: true, title: '킥오프 참석 여부 마감', meta: '밤 12시까지 · 오시는 분도, 못 오시는 분도 알려 주세요' },
   { d: '2026-11-22', type: 'p', star: true, title: 'AI 특강 사전 설문 마감', meta: '약 2분 · 고민을 모아 특강에서 함께 풀어요' },
-  { d: '2026-11-26', type: 'f', title: 'AI 특강', meta: '팬딩 · 밤 9시' },
+  { d: '2026-11-26', type: 'f', title: 'AI 특강', meta: '팬딩 · 밤 9시', url: 'https://fanding.kr/@ocmd_membership/course/1225/7645/', cta: '특강 들어가기' },
   { d: '2026-11-27', type: 'p', title: '입장 QR 문자 발송', meta: '참석하시는 분께 설문에 적은 번호로 보내 드려요' },
   { d: '2026-11-28', type: 'p', star: true, title: '3기 오프라인 킥오프', meta: '스카이아트홀 · 오후 1시~5시 (12시부터 입장)' },
   { d: '2026-12-01', type: 'p', star: true, title: '본강의 1 — 수익화 목표 설정 & 오리지널 코드 진단', meta: '온라인 · 밤 9시' },
@@ -547,7 +548,8 @@ var EVENTS = [
     var badge = diff <= 0 ? '오늘' : 'D-' + diff;
     var nx = document.getElementById('next');
     nx.innerHTML = '<div class="l">다음 일정 · ' + (ud.getMonth()+1) + '월 ' + ud.getDate() + '일 (' + DOW[ud.getDay()] + ')<span class="dd">' + badge + '</span></div>' +
-      '<div class="t">' + esc(upcoming.title) + '</div><div class="m">' + esc(upcoming.meta || '') + '</div>';
+      '<div class="t">' + esc(upcoming.title) + '</div><div class="m">' + esc(upcoming.meta || '') + '</div>' +
+      (upcoming.url ? '<a class="nx-btn" href="' + upcoming.url + '" target="_blank" rel="noopener">' + esc(upcoming.cta || '바로가기') + ' ↗</a>' : '');
     nx.hidden = false;
   }
 })();
