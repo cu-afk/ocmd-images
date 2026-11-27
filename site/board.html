@@ -111,6 +111,10 @@
   .tabs button[aria-selected="true"]{background:#fff;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.08)}
   .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--ink-2);margin:12px 2px 8px}
   .legend i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:6px;vertical-align:-1px}
+  .ev-past>summary{cursor:pointer;list-style:none;font-size:14px;font-weight:700;color:var(--ink-2);background:#efede9;border-radius:12px;padding:11px 14px;margin-bottom:8px}
+  .ev-past>summary::-webkit-details-marker{display:none}
+  .ev-past>summary::after{content:' ▾';color:var(--ink-3)}
+  .ev-past[open]>summary::after{content:' ▴'}
   .ev{display:grid;grid-template-columns:54px 1fr;gap:12px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:8px}
   .ev .d{text-align:center;border-radius:12px;padding:6px 0}
   .ev .d b{display:block;font-size:19px;line-height:1.2}
@@ -193,7 +197,7 @@
   <div class="wrap">
     <p class="eyebrow">Calendar</p>
     <h2>🗓️ 3기 일정</h2>
-    <p class="sub">본강의는 매주 화요일, 팬딩특강은 주로 목요일 밤 9시예요. 지난 일정은 흐리게 보여요.</p>
+    <p class="sub">본강의는 매주 화요일, 팬딩특강은 주로 목요일 밤 9시예요. 지난 일정은 접어 두었어요.</p>
     <div class="tabs" role="tablist">
       <button role="tab" aria-selected="true" data-m="11">11월</button>
       <button role="tab" aria-selected="false" data-m="12">12월</button>
@@ -543,7 +547,10 @@ var EVENTS = [
   }
   function showMonth(m){
     document.querySelectorAll('.tabs button').forEach(function(b){ b.setAttribute('aria-selected', b.dataset.m === m ? 'true' : 'false'); });
-    evList.innerHTML = EVENTS.filter(function(e){ return String(kdate(e.d).getMonth()+1) === m; }).map(evHTML).join('');
+    var monthEv = EVENTS.filter(function(e){ return String(kdate(e.d).getMonth()+1) === m; });
+    var pastEv = monthEv.filter(function(e){ return kdate(e.end || e.d) < today; });
+    var nextEv = monthEv.filter(function(e){ return kdate(e.end || e.d) >= today; });
+    evList.innerHTML = (pastEv.length ? '<details class="ev-past"><summary>지난 일정 ' + pastEv.length + '개 보기</summary>' + pastEv.map(evHTML).join('') + '</details>' : '') + nextEv.map(evHTML).join('');
   }
   document.querySelectorAll('.tabs button').forEach(function(b){ b.addEventListener('click', function(){ showMonth(b.dataset.m); }); });
   var cm = String(today.getMonth()+1);
