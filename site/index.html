@@ -240,6 +240,10 @@
   .lec .go{flex:none;font-size:14px;font-weight:700;color:var(--brand-ink);background:var(--soft);border-radius:999px;padding:5px 12px}
   .after b{color:var(--ink-2)}
   .ev.past{opacity:.45}
+  .ev-past>summary{cursor:pointer;list-style:none;font-size:14px;font-weight:700;color:var(--brand-ink);background:var(--soft);border-radius:12px;padding:11px 14px;margin:4px 0 8px}
+  .ev-past>summary::-webkit-details-marker{display:none}
+  .ev-past>summary::after{content:' ▾'}
+  .ev-past[open]>summary::after{content:' ▴'}
   .ev.past .ttl::after{content:"완료";display:inline-block;font-size:11px;font-weight:700;color:var(--ink-2);background:#e4e3ea;border-radius:5px;padding:0 6px;margin-left:6px;vertical-align:1px}
   .after{margin-top:16px;font-size:14px;color:var(--ink-3);line-height:1.8}
 
@@ -777,6 +781,15 @@
   segs.forEach(function(b){ b.addEventListener('click', function(){ show(b.dataset.m); }); });
   var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   panels.forEach(function(p){ var m = +p.dataset.m; p.querySelectorAll('.ev').forEach(function(ev){ var d = new Date(m >= 11 ? 2026 : 2027, m - 1, +ev.querySelector('.d b').textContent); if (d < today) ev.classList.add('past'); }); });
+  document.querySelectorAll('.panel .card').forEach(function(card){
+    var past = card.querySelectorAll(':scope > .ev.past');
+    if (!past.length) return;
+    var det = document.createElement('details'); det.className = 'ev-past';
+    var sm = document.createElement('summary'); sm.textContent = '지난 일정 ' + past.length + '개 보기';
+    det.appendChild(sm);
+    card.insertBefore(det, past[0]);
+    past.forEach(function(ev){ det.appendChild(ev); });
+  });
   var cm = String(now.getMonth() + 1);
   if (['11','12','1','2'].indexOf(cm) > -1 && now >= new Date('2026-11-01T00:00:00+09:00')) show(cm);
 
