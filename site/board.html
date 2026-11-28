@@ -86,6 +86,12 @@
   .nt .ar{flex:none;color:var(--ink-3);font-weight:700;font-size:20px;line-height:1}
   .nt[open] .ar{transform:rotate(45deg)}
   .nt .tg.must{background:var(--pink);color:var(--pink-ink)}
+  .nt .tg.rp,.item .tg.rp{background:#ece9fb;color:#4b3fb0}
+  .nt .tg.sv,.item .tg.sv{background:#e4f1fa;color:#1d6a96}
+  .nt .tg.evt,.item .tg.evt{background:#fff0d9;color:#a35a00}
+  .nt .tg.prep,.item .tg.prep{background:#e6f4ea;color:#2f7a45}
+  .nt .tg.lec{background:var(--lav);color:var(--lav-ink)}
+  .mk{display:inline-block;margin-left:6px;font-size:11px;font-weight:800;color:var(--pink-ink);background:var(--pink);border-radius:5px;padding:0 6px;vertical-align:2px}
   .nb{border-top:1px solid var(--line);padding:14px 16px 16px;font-size:15px;line-height:1.7}
   .nb p{margin:0 0 10px}
   .nb .nh{font-weight:800;margin:18px 0 4px;font-size:16px}
@@ -446,16 +452,16 @@
 
 <script>
 var NOTICES = [
-  { date: '2026-11-28', tag: '필독', status: 'open', title: '[킥오프] 오프닝 컨퍼런스 만족도 조사에 참여해 주세요 (~12/6)', body: 'n-survey' },
-  { date: '2026-11-28', tag: '안내', status: 'open', title: '[이벤트] 「100일의 첫 페이지」 후기 쓰고 선물 받아 가세요 (~12/6)', body: 'n-event' },
-  { date: '2026-11-24', tag: '필독', status: 'done', title: '[AI 특강] 11/26(목) 전까지 AI 도구 4가지 설치해 주세요', body: 'n-install' },
-  { date: '2026-11-26', tag: '필독', status: 'open', title: '[다시보기] 11/26 AI 특강 보는 방법 (11/27 오전 11시 업로드)', body: 'n-1126' },
-  { date: '2026-11-17', tag: '필독', status: 'done', title: '[다시보기] 11/17 즉문즉답 Q&A 세션 보는 방법', body: 'n-1117' },
-  { date: '2026-11-17', tag: '필독', status: 'done', title: '[AI 특강] 사전 설문에 참여해 주세요 (~11/22)', body: 'n-ai' },
-  { date: '2026-11-13', tag: '필독', status: 'done', title: '[킥오프] 11/28 참석 여부를 알려 주세요 (~11/19)', body: 'n-kick' },
-  { date: '2026-11-13', tag: '필독', status: 'done', title: '[퍼실·추가 결제자] 팬딩 가입 + 시작 설문지 두 가지', body: 'n-1113' },
+  { date: '2026-11-28', tag: '설문', must: true, status: 'open', title: '오프닝 컨퍼런스 만족도 조사에 참여해 주세요 (~12/6)', body: 'n-survey' },
+  { date: '2026-11-28', tag: '이벤트', status: 'open', title: '「100일의 첫 페이지」 후기 쓰고 선물 받아 가세요 (~12/6)', body: 'n-event' },
+  { date: '2026-11-24', tag: '준비', must: true, status: 'done', title: '11/26(목) AI 특강 전까지 AI 도구 4가지 설치해 주세요', body: 'n-install' },
+  { date: '2026-11-26', tag: '다시보기', must: true, status: 'open', title: '11/26 AI 특강 보는 방법 (11/27 오전 11시 업로드)', body: 'n-1126' },
+  { date: '2026-11-17', tag: '다시보기', must: true, status: 'done', title: '11/17 즉문즉답 Q&A 세션 보는 방법', body: 'n-1117' },
+  { date: '2026-11-17', tag: '설문', must: true, status: 'done', title: 'AI 특강 사전 설문에 참여해 주세요 (~11/22)', body: 'n-ai' },
+  { date: '2026-11-13', tag: '설문', must: true, status: 'done', title: '11/28 킥오프 참석 여부를 알려 주세요 (~11/19)', body: 'n-kick' },
+  { date: '2026-11-13', tag: '준비', must: true, status: 'done', title: '[퍼실·추가 결제자] 팬딩 가입 + 시작 설문지 두 가지', body: 'n-1113' },
   { date: '2026-11-06', tag: '강의', status: 'done', title: '프리미엄 클래스 3기 강의 안내', body: 'n-1106' },
-  { tag: '안내', status: 'done', title: '결제 후 해야 하는 2가지 (11/8 마감)', body: 'n-1108' }
+  { tag: '준비', status: 'done', title: '결제 후 해야 하는 2가지 (11/8 마감)', body: 'n-1108' }
 ];
 
 /* 필독 고정 공지: 킥오프 전까지 할 일 · 혜택강의 (체크 상태는 결제자 안내 페이지와 공유) */
@@ -526,7 +532,8 @@ var EVENTS = [
   function kdate(iso){ var p = iso.split('-'); return new Date(+p[0], +p[1]-1, +p[2]); }
   var today = new Date(); today.setHours(0,0,0,0);
   var nList = document.getElementById('notice-list');
-  var tagClass = function(t){ return t === '필독' ? 'must' : (t === '강의' ? 'lec' : (t === '정보' ? 'info' : '')); };
+  var tagClass = function(t){ return ({ '필독':'must', '강의':'lec', '정보':'info', '다시보기':'rp', '설문':'sv', '이벤트':'evt', '준비':'prep' })[t] || ''; };
+  var mustMark = function(n){ return n.must && n.status === 'open' ? '<span class="mk">필독</span>' : ''; };
   function renderNotices(status){
     var rows = NOTICES.filter(function(n){ return n.status === status; })
       .sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
@@ -541,10 +548,10 @@ var EVENTS = [
     nList.innerHTML = pin + rows.map(function(n){
       var d = n.date ? kdate(n.date) : null;
       var ds = d ? (d.getMonth()+1) + '.' + d.getDate() + ' (' + DOW[d.getDay()] + ')' : '';
-      if (n.body) return '<details class="nt"><summary>' + (n.tag ? '<span class="tg ' + tagClass(n.tag) + '">' + esc(n.tag) + '</span>' : '') + '<span class="tt">' + esc(n.title) + (ds ? '<span class="dt">' + ds + '</span>' : '') + '</span><span class="ar">+</span></summary><div class="nb">' + document.getElementById(n.body).innerHTML + '</div></details>';
+      if (n.body) return '<details class="nt"><summary>' + (n.tag ? '<span class="tg ' + tagClass(n.tag) + '">' + esc(n.tag) + '</span>' : '') + '<span class="tt">' + esc(n.title) + mustMark(n) + (ds ? '<span class="dt">' + ds + '</span>' : '') + '</span><span class="ar">+</span></summary><div class="nb">' + document.getElementById(n.body).innerHTML + '</div></details>';
       return '<a class="item" href="' + esc(n.url) + '" target="_blank" rel="noopener">' +
         (n.tag ? '<span class="tg ' + tagClass(n.tag) + '">' + esc(n.tag) + '</span>' : '') +
-        '<span class="tt">' + esc(n.title) + (ds ? '<span class="dt">' + ds + '</span>' : '') + '</span><span class="ar">↗</span></a>';
+        '<span class="tt">' + esc(n.title) + mustMark(n) + (ds ? '<span class="dt">' + ds + '</span>' : '') + '</span><span class="ar">↗</span></a>';
     }).join('');
     bindPin();
   }
