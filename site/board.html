@@ -565,7 +565,7 @@ var EVENTS = [
       c.addEventListener('change', function(){ try { localStorage.setItem(c.dataset.k, c.checked ? '1' : '0'); } catch(e){} });
     });
   }
-  document.getElementById('cnt-open').textContent = NOTICES.filter(function(n){return n.status==='open';}).length + 1;
+  document.getElementById('cnt-open').textContent = NOTICES.filter(function(n){return n.status==='open';}).length; /* 고정 카드를 다시 켜면 + 1 */
   document.getElementById('cnt-done').textContent = NOTICES.filter(function(n){return n.status==='done';}).length || '';
   var segBtns = document.querySelectorAll('.seg button');
   segBtns.forEach(function(b){ b.addEventListener('click', function(){
