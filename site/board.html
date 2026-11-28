@@ -460,6 +460,7 @@ var NOTICES = [
   { date: '2026-11-17', tag: '설문', must: true, status: 'done', title: 'AI 특강 사전 설문에 참여해 주세요 (~11/22)', body: 'n-ai' },
   { date: '2026-11-13', tag: '설문', must: true, status: 'done', title: '11/28 킥오프 참석 여부를 알려 주세요 (~11/19)', body: 'n-kick' },
   { date: '2026-11-13', tag: '준비', must: true, status: 'done', title: '[퍼실·추가 결제자] 팬딩 가입 + 시작 설문지 두 가지', body: 'n-1113' },
+  { date: '2026-11-12', tag: '준비', status: 'done', title: '킥오프 전까지 할 일 · 혜택강의 듣는 순서', body: 'n-1112' },
   { date: '2026-11-06', tag: '강의', status: 'done', title: '프리미엄 클래스 3기 강의 안내', body: 'n-1106' },
   { tag: '준비', status: 'done', title: '결제 후 해야 하는 2가지 (11/8 마감)', body: 'n-1108' }
 ];
@@ -537,7 +538,8 @@ var EVENTS = [
   function renderNotices(status){
     var rows = NOTICES.filter(function(n){ return n.status === status; })
       .sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
-    var pin = status === 'open' ? PIN : '';
+    var PIN_ON = false; /* 고정 카드 다시 쓰려면 true */
+    var pin = (status === 'open' && PIN_ON) ? PIN : '';
     if (!rows.length && pin){ nList.innerHTML = pin; bindPin(); return; }
     if (!rows.length){
       nList.innerHTML = status === 'open'
